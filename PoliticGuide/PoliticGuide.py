@@ -7,7 +7,7 @@ with st.sidebar:
     # "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     subject = st.selectbox("学科：", ["马克思主义基本原理", "毛泽东思想和中国特色社会主义理论体系概论", "思想道德与法治", "中国近代史纲要", "全学科"], key="theme")
 
-st.title("📚 PoliticGuide")
+st.title("📚 PolitiGuide")
 # st.title(subject)
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "可以问我一切关于政治的内容。"}]
