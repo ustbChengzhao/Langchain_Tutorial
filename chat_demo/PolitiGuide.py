@@ -1,5 +1,4 @@
 import streamlit as st
-from openai import OpenAI
 from main import Query, Context
 from streamlit_modal import Modal
 
