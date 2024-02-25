@@ -11,7 +11,7 @@ from langchain_openai import ChatOpenAI, OpenAI
 import os
 import getpass
 # os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter your OpenAI API key: ")
-os.environ["OPENAI_API_KEY"] = "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"
+# os.environ["OPENAI_API_KEY"] = "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"
 
 def read_pdf(file_path):
     # loader = PyPDFDirectoryLoader(file_path, extract_images=True)
@@ -31,6 +31,7 @@ def read_pdf(file_path):
     documents = splitter.split_documents(raw_documents)
 
     embeddings = ModelScopeEmbeddings(model_id="iic/nlp_gte_sentence-embedding_chinese-base")
+    embeddings = ModelScopeEmbeddings()
     db = FAISS.from_documents(documents, embeddings)
     db.save_local(os.path.join("./db", file_path.replace(".pdf", "") + ".faiss"))
     # db.save_local("./db/all.faiss")

@@ -1,12 +1,12 @@
 import streamlit as st
 from main import Query, Context
 from streamlit_modal import Modal
-
+import os
 with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
     # "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     subject = st.selectbox("学科：", ["马克思主义基本原理", "毛泽东思想和中国特色社会主义理论体系概论", "思想道德与法治", "中国近代史纲要", "全学科"], key="theme")
-
+    os.environ["OPENAI_API_KEY"] = openai_api_key
 st.title("📚 PolitiGuide")
 # st.title(subject)
 if "messages" not in st.session_state:

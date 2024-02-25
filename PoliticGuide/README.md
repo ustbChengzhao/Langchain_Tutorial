@@ -5,3 +5,5 @@
 💻[code](https://github.com/ustbChengzhao/Langchain_Tutorial/blob/main/chat_demo/PolitiGuide.py)
 
 🌐[web demo](https://ustbchengzhao-langchain-tutorial-chat-demo-politiguide.streamlit.app/)
+
+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
