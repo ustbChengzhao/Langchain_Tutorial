@@ -1,9 +1,18 @@
 # 📚PoliticGuide
 
-基于langchain的RAG应用，覆盖考研政治的知识点，根据问题回答并给出答案出处。
-
 💻[code](https://github.com/ustbChengzhao/Langchain_Tutorial/blob/main/chat_demo/PolitiGuide.py)
 
-🌐[web demo](https://ustbchengzhao-langchain-tutorial-chat-demo-politiguide.streamlit.app/)
+基于langchain的RAG应用，覆盖考研政治的知识点，根据问题回答并给出答案出处。
 
-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
+![1](./pic/1.png)
+
+![2](./pic/2.png)
+
+### 用法
+
+```shell
+conda create -nn politicguide python==3.11
+pip install -r requirements.txt
+streamlit run PoliticGuide.py
+```
+

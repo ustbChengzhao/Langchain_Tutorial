@@ -10,12 +10,13 @@ from operator import itemgetter
 from langchain_openai import ChatOpenAI, OpenAI
 import os
 import getpass
+import pinecone
 # os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter your OpenAI API key: ")
 # os.environ["OPENAI_API_KEY"] = "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"
-
+os.environ["PINECONE_API_KEY"] = "6772fa80-cc57-4283-8820-cb81189c91d4"
 def read_pdf(file_path):
     # loader = PyPDFDirectoryLoader(file_path, extract_images=True)
-    # loader = PyPDFLoader("./马克思主义基本原理.pdf", )
+    loader = PyPDFLoader("/Users/apple/Documents/coding/Langchain_Tutorial/PoliticGuide/马克思主义基本原理.pdf", )
     # raw_documents = loader.load()
     # loader = PyPDFLoader("./中国近代史纲要.pdf", )
     # raw_documents += loader.load()
@@ -24,7 +25,7 @@ def read_pdf(file_path):
     # loader = PyPDFLoader("./思想道德与法治.pdf", )
     # raw_documents += loader.load()
     
-    loader = PyPDFLoader(file_path)
+    # loader = PyPDFLoader(file_path)
     raw_documents = loader.load()
     splitter = CharacterTextSplitter(chunk_size=50,
                                      chunk_overlap=0)
@@ -32,10 +33,18 @@ def read_pdf(file_path):
 
     embeddings = ModelScopeEmbeddings(model_id="iic/nlp_gte_sentence-embedding_chinese-base")
     embeddings = ModelScopeEmbeddings()
-    db = FAISS.from_documents(documents, embeddings)
-    db.save_local(os.path.join("./db", file_path.replace(".pdf", "") + ".faiss"))
+    # db = FAISS.from_documents(documents, embeddings)
+    # db.save_local(os.path.join("./db", file_path.replace(".pdf", "") + ".faiss"))
     # db.save_local("./db/all.faiss")
-
+    
+    # 使用向量数据库Pinecone存储
+    pinecone.init(
+        api_key=os.environ["PINECONE_API_KEY"],
+        environment="gcp-starter",
+    )
+    docsearch = pinecone.from_documents(documents, embeddings, index_name="politicguide")
+    return None
+    
 def Context(query, subject="全学科"):
     db_path = {"中国近代史纲要": "./db/中国近代史纲要.faiss",
                "马克思主义基本原理": "./db/马克思主义基本原理.faiss",
@@ -100,18 +109,18 @@ def print_pretty(documents):
     return document_dict
 
 if __name__ == "__main__":
-    # read_pdf("./中国近代史纲要.pdf")
+    read_pdf("./中国近代史纲要.pdf")
     # print(Query("剩余价值学说是什么？")[1].metadata)
     # documents = C("剩余价值学说是什么？")
     # for key, item in print_pretty(documents).items():
     #     print(key)
     #     print(item)
-    query = "剩余价值学说是什么？"
-    context = Context(query, "马克思主义基本原理")
-    msg = "答案出处：\n"
-    for document in context:
-        title = f'{document.metadata["source"].replace(".pdf", "").replace(r"./", "").strip()}\t{document.metadata["page"]}页'
-        msg = msg + title + "\n"
-    print(msg)
-    # answer = Query(context, query)
-    # print(answer)
+    # query = "剩余价值学说是什么？"
+    # context = Context(query, "马克思主义基本原理")
+    # msg = "答案出处：\n"
+    # for document in context:
+    #     title = f'{document.metadata["source"].replace(".pdf", "").replace(r"./", "").strip()}\t{document.metadata["page"]}页'
+    #     msg = msg + title + "\n"
+    # print(msg)
+    # # answer = Query(context, query)
+    # # print(answer)
