@@ -1,6 +1,3 @@
-
-# Langchain Tutorial README.md
-
 # DEMO
 
 + 基于RAG任务的考研政治问答系统[PoliticGuide](https://github.com/ustbChengzhao/Langchain_Tutorial/tree/main/PoliticGuide)
@@ -37,6 +34,6 @@
 
 ## 第4部分：Agent
 
-+ 4.0 Agent Quickstart：搭建网路搜索+检索Agent
-+ 4.1 Custom agent：自定义Agent
-+ 4.2 Definning Custom Tools：自定义Tools
++ [4.0 Agent Quickstart](https://github.com/ustbChengzhao/Langchain_Tutorial/blob/main/langchain_tutorial/4.0%20Agent%20Quickstart.ipynb)：搭建网路搜索+检索Agent
++ [4.1 Custom agent](https://github.com/ustbChengzhao/Langchain_Tutorial/blob/main/langchain_tutorial/4.1%20Custom%20agent.ipynb)：自定义Agent
++ [4.2 Definning Custom Tools](https://github.com/ustbChengzhao/Langchain_Tutorial/blob/main/langchain_tutorial/4.2%20Definning%20Custom%20Tools.ipynb)：自定义Tools
