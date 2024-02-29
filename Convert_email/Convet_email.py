@@ -3,7 +3,7 @@ from langchain.prompts import PromptTemplate
 from langchain.llms import OpenAI
 import os
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 
 template = """
     Below is an email that may be poorly worded.
@@ -38,7 +38,7 @@ def get_llm():
 
 llm = get_llm()
 st.set_page_config(
-    page_title="Globalize Text",
+    page_title="Convert Email",
     page_icon=":robot:"
 )
 st.header("Globalize Text")
@@ -73,4 +73,4 @@ st.markdown("## Your Converted Email:")
 if email_input:
     prompt_with_input = prompt.format(tone=option_tone, dialect=option_dialect, email=email_input)
     fomatted_email = llm(prompt_with_input)
-    st.write(prompt_with_input)
+    st.write(fomatted_email)
